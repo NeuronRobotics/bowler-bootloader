@@ -8,7 +8,7 @@
 
 void writeLine(BowlerPacket * Packet){
 	//printfDEBUG("Writing Line:");
-	UINT32 i,offset,numWords;
+	uint32_t i,offset,numWords;
 	UINT32_UNION baseAddress,dataWord;
 	baseAddress.byte.FB=Packet->use.data[1];
 	baseAddress.byte.TB=Packet->use.data[2];
@@ -26,14 +26,14 @@ void writeLine(BowlerPacket * Packet){
 	}
 }
 
-void writeWordFlash(DWORD address,DWORD data){
-	extern BOOL resetFlag;
+void writeWordFlash(uint32_t address,uint32_t data){
+	extern boolean resetFlag;
 	if (address >= StartAppVectPhysical && (address < EndAppVectPhysical)){
 		NVMWriteWord((DWORD*)address, data);
 		if ((*(int *)(address|0x80000000)) != data){
 			//printfDEBUG("##Write FAILED!!");
 			eraseFlash();
-			resetFlag = TRUE;
+			resetFlag = true ;
 		}
 	}
 
@@ -41,9 +41,9 @@ void writeWordFlash(DWORD address,DWORD data){
 
 void eraseFlash(void){
 	int temp;
-	DWORD address = StartAppVectPhysical;
-	//DWORD erAddr;
-	DWORD size =EndAppVectPhysical-StartAppVectPhysical;
+	uint32_t address = StartAppVectPhysical;
+	//uint32_t erAddr;
+	uint32_t size =EndAppVectPhysical-StartAppVectPhysical;
 	for( temp = 0; temp < (size/FLASH_PAGE_SIZE); temp++ ){
 		if (address <(EndAppVectPhysical-FLASH_PAGE_SIZE)){
 			//printfDEBUG("Erasing page at address:");

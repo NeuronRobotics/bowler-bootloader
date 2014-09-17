@@ -6,46 +6,46 @@
  */
 #include "main.h"
 
-BYTE cmd[4];
+uint8_t cmd[4];
 
-BYTE avrFlashSize;
-BOOL firstPage=TRUE;
-UINT32 firstPageBase=0;
+uint8_t avrFlashSize;
+boolean firstPage=true; 
+uint32_t firstPageBase=0;
 
 #define ATMEGA324P 0x95
 #define ATMEGA644P 0x96
 
 union page_buff{
-	UINT16 words[100];
-	BYTE   bytes[200];
+	uint16_t words[100];
+	uint8_t   bytes[200];
 } page;
 
-void getCmd(BYTE comand, BYTE addrHigh, BYTE addrLow, BYTE data) {
+void getCmd(uint8_t comand, uint8_t addrHigh, uint8_t addrLow, uint8_t data) {
 	cmd[0] = GetByteSPI(comand);
 	cmd[1] = GetByteSPI(addrHigh);
 	cmd[2] = GetByteSPI(addrLow);
 	cmd[3] = GetByteSPI(data);
 }
 
-static BYTE progmode []						={0xAC,0x53,0x00,0x00};
-static BYTE readVendorCode []				={0x30,0x00,0x00,0x00};
-static BYTE readPartFamilyandFlashSize []	={0x30,0x00,0x01,0x00};
-static BYTE readPartNumber []				={0x30,0x00,0x02,0x00};
-static BYTE eraseChip []					={0xAC,0x80,0x00,0x00};
+static uint8_t progmode []						={0xAC,0x53,0x00,0x00};
+static uint8_t readVendorCode []				={0x30,0x00,0x00,0x00};
+static uint8_t readPartFamilyandFlashSize []	={0x30,0x00,0x01,0x00};
+static uint8_t readPartNumber []				={0x30,0x00,0x02,0x00};
+static uint8_t eraseChip []					={0xAC,0x80,0x00,0x00};
 
 #define BytesAtATime 2
 
 //static float pageTime;
-static BOOL programing=FALSE;
-static BOOL initialized=FALSE;
+static boolean programing=false; 
+static boolean initialized=false; 
 
-BYTE getCommand(BYTE * b);
+uint8_t getCommand(uint8_t * b);
 
-BYTE readByte(UINT16 address);
-void writeAVRPageToFlash(UINT16 address);
-void writeAVRTempFlashPage(UINT16 addr, UINT16 value);
-BOOL writeWord(UINT16 data,UINT16 address);
-UINT16 readWord(UINT16 address);
+uint8_t readByte(uint16_t address);
+void writeAVRPageToFlash(uint16_t address);
+void writeAVRTempFlashPage(uint16_t addr, uint16_t value);
+boolean writeWord(uint16_t data,uint16_t address);
+uint16_t readWord(uint16_t address);
 
 
 
@@ -60,12 +60,12 @@ void eraseAVR(void){
 
 
 void avrSPIProg(BowlerPacket * Packet){
-	if (programing==FALSE){
-		programing=TRUE;
+	if (programing==false) {
+		programing=true; 
 		//programMode();
 	}
-	//BYTE data,set;
-	UINT32 i,numWords;
+	//uint8_t data,set;
+	uint32_t i,numWords;
 	UINT32_UNION baseAddress;
 	baseAddress.byte.FB=Packet->use.data[1];
 	baseAddress.byte.TB=Packet->use.data[2];
@@ -94,17 +94,17 @@ void avrSPIProg(BowlerPacket * Packet){
 		writeAVRPageToFlash(baseAddress.Val);
 	else if (avrFlashSize==ATMEGA644P){
 		if(firstPage){
-			firstPage=FALSE;
+			firstPage=false; 
 			firstPageBase=baseAddress.Val;
 		}else{
-			firstPage=TRUE;
+			firstPage=true; 
 			writeAVRPageToFlash(firstPageBase);
 		}
 	}
 }
 
-BYTE avrID[]={0,0,0};
-BYTE getVendorCode(void){
+uint8_t avrID[]={0,0,0};
+uint8_t getVendorCode(void){
 #if defined(DYIO)
 	if(avrID[0]!=0x1E)
 		avrID[0]= getCommand(readVendorCode);
@@ -113,7 +113,7 @@ BYTE getVendorCode(void){
 	return 0x1E;
 #endif
 }
-void GetAVRid(BYTE * buffer){
+void GetAVRid(uint8_t * buffer){
 	//printfDEBUG("AVR getting ID");
 	//InitUINT32Fifo(&storeAddr,privateAddr,sizeof(privateAddr));
 	programMode();
@@ -138,10 +138,10 @@ void programMode(void){
 	DelayMs(20);
 }
 
-BYTE getCommand(BYTE * b){
+uint8_t getCommand(uint8_t * b){
 	DelayMs(15);
 	int i;
-	BYTE back;
+	uint8_t back;
 	for (i=0;i<4;i++){
 		 back=GetByteSPI(b[i]);
 	}
@@ -159,7 +159,7 @@ void ReleaseAVRReset(void){
 	//DelayMs(70);
 }
 
-void writeAVRTempFlashPage(UINT16 addr, UINT16 value)
+void writeAVRTempFlashPage(uint16_t addr, uint16_t value)
 {
   UINT16_UNION val;
   val.Val=value;
@@ -167,9 +167,9 @@ void writeAVRTempFlashPage(UINT16 addr, UINT16 value)
   getCmd(0x48, 0, addr, val.byte.SB);
 }
 
-void writeAVRPageToFlash(UINT16 address){
-	//UINT32 i,offset;
-	//BYTE data,set;
+void writeAVRPageToFlash(uint16_t address){
+	//uint32_t i,offset;
+	//uint8_t data,set;
 	UINT16_UNION addr;
 	addr.Val=address>>1;
 	getCmd(0x4c,addr.byte.SB,addr.byte.LB,0x00);
@@ -178,8 +178,8 @@ void writeAVRPageToFlash(UINT16 address){
 	DelayMs(30);
 }
 
-UINT16 readWord(UINT16 address){
-	UINT16 low,high;
+uint16_t readWord(uint16_t address){
+	uint16_t low,high;
 	UINT16_UNION addr;
 	addr.Val=address;
 	getCmd(0x20, addr.byte.SB, addr.byte.LB, 0x00);
@@ -211,21 +211,21 @@ void writeExtendedFuse()
 }
 
 
-BYTE readLowFuse(void)
+uint8_t readLowFuse(void)
 {
   getCmd(0x50, 0x00, 0, 0);
   return cmd[3];
 }
 
 
-BYTE readExtFuse(void)
+uint8_t readExtFuse(void)
 {
   getCmd(0x50, 0x08, 0, 0);
   return cmd[3];
 }
 
 
-BYTE readHighFuse(void)
+uint8_t readHighFuse(void)
 {
   getCmd(0x58, 0x08, 0, 0);
   return cmd[3];
@@ -235,7 +235,7 @@ BYTE readHighFuse(void)
 void InitSPI(void){
 	if(initialized)
 		return;
-	initialized=TRUE;
+	initialized=true; 
 	//printfDEBUG("Initializing SPI interface");
 	mPORTGOpenDrainOpen(BIT_6);// Clock is output
 	mPORTGOpenDrainOpen(BIT_8);// Data Out is an output
@@ -249,7 +249,7 @@ void StopSPI(void){
 	ReleaseAVRReset();
 }
 
-BYTE GetByteSPI(BYTE b){
+uint8_t GetByteSPI(uint8_t b){
 	InitSPI();
 	putcSPI2(b);	// Start sending
 	return getcSPI2();

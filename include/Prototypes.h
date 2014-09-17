@@ -11,25 +11,25 @@
 void InitializeSystem(void);
 void RunApplications(void);
 void writeLine(BowlerPacket * Packet);
-void writeWordFlash(DWORD address,DWORD data);
+void writeWordFlash(uint32_t address,uint32_t data);
 void eraseFlash(void);
 void BlinkUSBStatus(void);
 
 void InitSPI(void);
 void StopSPI(void);
-BYTE GetByteSPI(BYTE b);
+uint8_t GetByteSPI(uint8_t b);
 void avrSPIProg(BowlerPacket * Packet);
 void eraseAVR(void);
-void GetAVRid(BYTE * buffer);
+void GetAVRid(uint8_t * buffer);
 void HoldAVRReset(void);
 void ReleaseAVRReset(void);
-BOOL AVRDone(void);
+boolean AVRDone(void);
 void AVRFlush(void);
 void runAVRByteWrites(void);
-BOOL writeAVRLowByte(BYTE data, UINT16 address);
-BOOL writeAVRHighByte(BYTE data, UINT16 address);
-BOOL writeAVRTempFlashPageHighByte(BYTE data, BYTE address);
-BOOL writeAVRTempFlashPageLowByte(BYTE data, BYTE address);
+boolean writeAVRLowByte(uint8_t data, uint16_t address);
+boolean writeAVRHighByte(uint8_t data, uint16_t address);
+boolean writeAVRTempFlashPageHighByte(uint8_t data, uint8_t address);
+boolean writeAVRTempFlashPageLowByte(uint8_t data, uint8_t address);
 
 void writeLowFuse();
 void writeHighFuse();

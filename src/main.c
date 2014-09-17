@@ -12,9 +12,9 @@ const unsigned char infoNSName[] = "neuronrobotics.dyio._rev;0.3;;\0";
 
 
 void BlinkUSBStatus(void);
-BOOL DebugFlag=TRUE;
+boolean DebugFlag= true ;
 //unsigned int __attribute__((section("boot_software_key_sec,\"aw\",@nobits#"))) SoftwareKey;
-BOOL resetFlag;
+boolean resetFlag;
 
 typedef enum _Myexcep_code{
     EXCEP_IRQ = 0,          // interrupt
@@ -127,14 +127,14 @@ int main(void){
 
 	InitializeSystem();
 
-	resetFlag=FALSE;
+	resetFlag=false; 
     while(1) {
     	if(getVendorCode() == 0x1E){
     		BlinkUSBStatus();
     	}else{
     		setLed(1,0,0);
     	}
-    	Bowler_Server(&Packet, TRUE);
+    	Bowler_Server(&Packet, true) ;
         if((isPressed()||resetFlag)){
 			U1CON = 0x0000;
 			DelayMs(100);
@@ -142,7 +142,7 @@ int main(void){
         }
     }//end while
 }
-static BYTE avrID[7];
+static uint8_t avrID[7];
 void InitializeSystem(void)
 {
 	Bowler_Init();
@@ -152,7 +152,7 @@ void InitializeSystem(void)
 	#define MINOR_REV			0
 	#define FIRMWARE_VERSION	1
 #endif
-	BYTE rev[] = {MAJOR_REV,MINOR_REV,FIRMWARE_VERSION};
+	uint8_t rev[] = {MAJOR_REV,MINOR_REV,FIRMWARE_VERSION};
 	//println("Seting BL version");
 	FlashSetBlRev(rev);
 
@@ -194,12 +194,12 @@ void InitializeSystem(void)
 
 }
 
-BYTE core0str[]="\npic32mx440f128h";
-BYTE core1str[]="\navr_atmegaXX4p_";
-BYTE UserGetRPCs(BowlerPacket *Packet){
+uint8_t core0str[]="\npic32mx440f128h";
+uint8_t core1str[]="\navr_atmegaXX4p_";
+uint8_t UserGetRPCs(BowlerPacket *Packet){
 	int i;
 	int offset=0;
-	BYTE rev[3];
+	uint8_t rev[3];
 	switch (Packet->use.head.RPC){
 	case BLID:
 		Packet->use.head.Method=BOWLER_POST;
@@ -228,12 +228,12 @@ BYTE UserGetRPCs(BowlerPacket *Packet){
 		Packet->use.head.DataLegnth=4+6;
 		break;
 	}
-	return TRUE;
+	return true; 
 }
-BYTE UserPostRPCs(BowlerPacket *Packet){
+uint8_t UserPostRPCs(BowlerPacket *Packet){
 	return 0;
 }
-BYTE UserCriticalRPCs(BowlerPacket *Packet){
+uint8_t UserCriticalRPCs(BowlerPacket *Packet){
 
 	switch (Packet->use.head.RPC){
 
@@ -268,10 +268,10 @@ BYTE UserCriticalRPCs(BowlerPacket *Packet){
 		break;
 	case REST:
 		//printfDEBUG("#Resetting device");
-		resetFlag=TRUE;
+		resetFlag=true; 
 		READY(Packet,0,3);
 	}
-	return TRUE;
+	return true; 
 }
 
 

@@ -30,7 +30,7 @@
 static unsigned char greenLed=0;
 void BlinkUSBStatus(void)
 {
-    static WORD led_count=0;
+    static uint16_t led_count=0;
 
     if(led_count == 0)led_count = 10000U;
     led_count--;
