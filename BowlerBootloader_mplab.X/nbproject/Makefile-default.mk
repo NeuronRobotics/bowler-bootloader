@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../src/AVRInterface.c ../src/flash.c ../src/main.c ../src/led.c
+SOURCEFILES_QUOTED_IF_SPACED=../src/main.c ../src/led.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1360937237/AVRInterface.o ${OBJECTDIR}/_ext/1360937237/flash.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/led.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d ${OBJECTDIR}/_ext/1360937237/flash.o.d ${OBJECTDIR}/_ext/1360937237/main.o.d ${OBJECTDIR}/_ext/1360937237/led.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/led.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1360937237/main.o.d ${OBJECTDIR}/_ext/1360937237/led.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1360937237/AVRInterface.o ${OBJECTDIR}/_ext/1360937237/flash.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/led.o
+OBJECTFILES=${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/led.o
 
 # Source Files
-SOURCEFILES=../src/AVRInterface.c ../src/flash.c ../src/main.c ../src/led.c
+SOURCEFILES=../src/main.c ../src/led.c
 
 
 CFLAGS=
@@ -75,7 +75,7 @@ FIXDEPS=fixDeps
 	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
 MP_PROCESSOR_OPTION=32MX440F128H
-MP_LINKER_FILE_OPTION=
+MP_LINKER_FILE_OPTION=,--script="elf32pic32mx.ld"
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
@@ -91,18 +91,6 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1360937237/AVRInterface.o: ../src/AVRInterface.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/_ext/1360937237 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/AVRInterface.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -mips16 -I"../../c-bowler/BowlerStack/include" -I"../../c-bowler/Platform/include" -I"../include" -I"../../dyio/common/include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d" -o ${OBJECTDIR}/_ext/1360937237/AVRInterface.o ../src/AVRInterface.c   
-	
-${OBJECTDIR}/_ext/1360937237/flash.o: ../src/flash.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/_ext/1360937237 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/flash.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/flash.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/flash.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -mips16 -I"../../c-bowler/BowlerStack/include" -I"../../c-bowler/Platform/include" -I"../include" -I"../../dyio/common/include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/flash.o.d" -o ${OBJECTDIR}/_ext/1360937237/flash.o ../src/flash.c   
-	
 ${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1360937237 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o.d 
@@ -116,18 +104,6 @@ ${OBJECTDIR}/_ext/1360937237/led.o: ../src/led.c  nbproject/Makefile-${CND_CONF}
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/led.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -mips16 -I"../../c-bowler/BowlerStack/include" -I"../../c-bowler/Platform/include" -I"../include" -I"../../dyio/common/include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/led.o.d" -o ${OBJECTDIR}/_ext/1360937237/led.o ../src/led.c   
 	
 else
-${OBJECTDIR}/_ext/1360937237/AVRInterface.o: ../src/AVRInterface.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/_ext/1360937237 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/AVRInterface.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -mips16 -I"../../c-bowler/BowlerStack/include" -I"../../c-bowler/Platform/include" -I"../include" -I"../../dyio/common/include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/AVRInterface.o.d" -o ${OBJECTDIR}/_ext/1360937237/AVRInterface.o ../src/AVRInterface.c   
-	
-${OBJECTDIR}/_ext/1360937237/flash.o: ../src/flash.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/_ext/1360937237 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/flash.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1360937237/flash.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/flash.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -mips16 -I"../../c-bowler/BowlerStack/include" -I"../../c-bowler/Platform/include" -I"../include" -I"../../dyio/common/include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/flash.o.d" -o ${OBJECTDIR}/_ext/1360937237/flash.o ../src/flash.c   
-	
 ${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1360937237 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o.d 
@@ -151,12 +127,12 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  ../../c-bowler/c-bowler.X/dist/default/debug/c-bowler.X.a  
+dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  ../../c-bowler/c-bowler.X/dist/default/debug/c-bowler.X.a  elf32pic32mx.ld
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	${MP_CC} $(MP_EXTRA_LD_PRE)  -mdebugger -D__MPLAB_DEBUGGER_PK3=1 -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}    ../../c-bowler/c-bowler.X/dist/default/debug/c-bowler.X.a      -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_PK3=1,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"
 	
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  ../../c-bowler/c-bowler.X/dist/default/production/c-bowler.X.a 
+dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  ../../c-bowler/c-bowler.X/dist/default/production/c-bowler.X.a elf32pic32mx.ld
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}    ../../c-bowler/c-bowler.X/dist/default/production/c-bowler.X.a      -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"
 	${MP_CC_DIR}/xc32-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/BowlerBootloader_mplab.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 

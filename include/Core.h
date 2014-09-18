@@ -65,7 +65,7 @@
 	#define isPressed()		( _RD6==0 || _RD7==0 || _RD13==0)
 	#define setLed(a,b,c) 	_RD0=a;_RD1=b;_RD2=c;
 
-#elif defined(SERVOSTRUDER)
+#elif defined(SERVOSTOCK)
 		#define initLed()		_TRISD0 = OUTPUT;_TRISD11 = OUTPUT;_TRISD10 = OUTPUT;
 		#define initButton() 	((_TRISF5)=1)
 		#define isPressed()		(_RF5 == 0)
