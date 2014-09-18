@@ -70,20 +70,21 @@ static uint8_t avrID[7];
 void InitializeSystem(void)
 {
 	Bowler_Init();
-	//println("Stack initialized");
+        setPrintLevelInfoPrint();
+	println_I("Stack initialized");
 #if !defined(MAJOR_REV)
 	#define MAJOR_REV			3
 	#define MINOR_REV			0
 	#define FIRMWARE_VERSION	1
 #endif
 	uint8_t rev[] = {MAJOR_REV,MINOR_REV,FIRMWARE_VERSION};
-	//println("Seting BL version");
+	println_I("Seting BL version");
 	FlashSetBlRev(rev);
 
-	//println("Adding Namespaces ");
+	println_I("Adding Namespaces ");
         addNamespaceToList(get_bcsBootloaderNamespace());
 
-	//println("Namespaces added");
+	println_I("Namespaces added");
 
 	char * dev = "NR CDC Bootloader";
 	char * ser = "FF00FF00FF00";
