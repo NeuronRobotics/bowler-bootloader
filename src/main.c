@@ -4,6 +4,7 @@
 #include "main.h"
 
 
+
 const unsigned char bootloaderNSName[] = "neuronrobotics.bootloader.*;0.3;;\0";
 
 const unsigned char infoNSName[] = "neuronrobotics.dyio._rev;0.3;;\0";

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 5.0.0?>
-
-<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage2">
+<?fileVersion 5.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage2">
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<configuration artifactName="NR_CDC_Bootloader_test" buildProperties="" description="" id="0.322472855" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
 			<folderInfo id="0.322472855." name="/" resourcePath="">
@@ -20,7 +18,9 @@
 					</tool>
 					<tool id="org.eclipse.cdt.build.core.settings.holder.1065036092" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 						<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.226116607" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-							<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NR-Clib/include}&quot;"/>
+							<listOptionValue builtIn="false" value="&quot;${workspace_loc:/c-bowler/BowlerStack/include}&quot;"/>
+							<listOptionValue builtIn="false" value="&quot;${workspace_loc:/c-bowler/Platform/include}&quot;"/>
+							<listOptionValue builtIn="false" value="/opt/microchip/xc32/v1.33/pic32-libs/include"/>
 						</option>
 						<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.717582383" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 					</tool>

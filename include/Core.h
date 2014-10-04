@@ -7,7 +7,7 @@
 
 #ifndef CORE_H_
 #define CORE_H_
-
+#include "arch/native/BowlerConfig.h"
 #if defined(MAINAPP)
 #ifdef USB_A0_SILICON_WORK_AROUND
 	#pragma config UPLLEN   = OFF       // USB PLL Enabled (A0 bit inverted)
