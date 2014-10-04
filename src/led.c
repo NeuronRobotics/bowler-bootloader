@@ -38,7 +38,7 @@ void BlinkUSBStatus(void)
 	if(led_count==0)
 	{
 		greenLed= !greenLed;
-		setLed(greenLed,greenLed,!greenLed);
+		setLed(!greenLed,greenLed,!greenLed);
 	}//end if
 
 

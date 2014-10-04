@@ -1,6 +1,3 @@
-#define DYIO
-
-
 #ifndef MAIN_H
 #define MAIN_H
 #include "Bowler/Bowler.h"
