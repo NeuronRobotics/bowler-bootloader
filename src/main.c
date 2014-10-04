@@ -72,23 +72,36 @@ void InitializeSystem(void)
 {
 	Bowler_Init();
         setPrintLevelInfoPrint();
-	println_I("Stack initialized");
+	//println_I("Stack initialized");
 #if !defined(MAJOR_REV)
 	#define MAJOR_REV			3
 	#define MINOR_REV			0
 	#define FIRMWARE_VERSION	1
 #endif
 	uint8_t rev[] = {MAJOR_REV,MINOR_REV,FIRMWARE_VERSION};
-	println_I("Seting BL version");
+	//println_I("Seting BL version");
 	FlashSetBlRev(rev);
 
-	println_I("Adding Namespaces ");
+	//println_I("Adding Namespaces ");
         addNamespaceToList(get_bcsBootloaderNamespace());
 
-	println_I("Namespaces added");
+	//println_I("Namespaces added");
 
-	char * dev = "NR CDC Bootloader";
-	char * ser = "FF00FF00FF00";
+	char * dev = "BL";
+	char ser[13];
+        int i;
+        char f = 'F';
+        char zero = '0';
+        for(i=0;i<6;i++){
+            if(i%2){
+                ser[i*2] = f;
+                ser[(i+1)*2] = f;
+            }else{
+               ser[i*2] = zero;
+               ser[(i+1)*2] = zero;
+            }
+
+        }
 	usb_CDC_Serial_Init(dev,ser,0x04D8,0x0001);
 
 #if defined(DYIO)
