@@ -48,17 +48,17 @@ int main(void) {
     }
 
     InitializeSystem();
-
+    
     println_I("Stack initialized");
     while (1) {
-        if (getVendorCode() == 0x1E) {
+//        if (getVendorCode() == 0x1E) {
             BlinkUSBStatus();
-        } else {
-            SetColor(1, 0, 0);
-        }
+//        } else {
+            //SetColor(1, 0, 0);
+//        }
         Bowler_Server(&Packet, true);
         if ((isPressed() || getBootloaderResetFlag())) {
-            println_E("Rebooting");
+            println_E("Rebooting "); p_int_E(isPressed());print_E(", ");p_int_E(getBootloaderResetFlag());
             U1CON = 0x0000;
             DelayMs(100);
             Reset();
@@ -70,7 +70,7 @@ static uint8_t avrID[7];
 void InitializeSystem(void) {
     Bowler_Init();
     setPrintLevelInfoPrint();
-    clearPrint();
+    
 
 #if !defined(MAJOR_REV)
 #define MAJOR_REV			3
@@ -80,27 +80,28 @@ void InitializeSystem(void) {
     uint8_t rev[] = {MAJOR_REV, MINOR_REV, FIRMWARE_VERSION};
     //println_I("Seting BL version");
     FlashSetBlRev(rev);
-
+    clearPrint();
     println_I("Adding Namespaces ");
     addNamespaceToList(get_bcsBootloaderNamespace());
 
     //println_I("Namespaces added");
 
-    char * dev = "BL";
+    char * dev = "Bootloader";
     char ser[13];
     int i;
     char f = 'F';
     char zero = '0';
     for (i = 0; i < 6; i++) {
-        if (i % 2) {
-            ser[i * 2] = f;
-            ser[(i + 1)*2] = f;
+        if (!(i % 2)) {
+            ser[i*2] = f;
+            ser[1 +i*2] = f;
         } else {
-            ser[i * 2] = zero;
-            ser[(i + 1)*2] = zero;
+            ser[i*2] = zero;
+            ser[1+i*2 ] = zero;
         }
-
     }
+    ser[12]=0;
+
     Pic32_Bowler_HAL_Init();
     usb_CDC_Serial_Init(dev, ser, 0x04D8, 0x0001);
 
