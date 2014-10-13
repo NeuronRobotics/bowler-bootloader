@@ -17,7 +17,7 @@ boolean DebugFlag = true;
 
 #define SYS_FREQ 			(80000000L)
 
-static BowlerPacket Packet;
+BowlerPacket BootloaderPacket;
 
 //#define isPressed() (_RB0==1)
 //#define initButton() (_TRISB0)=1;
@@ -55,7 +55,7 @@ int main(void) {
         if (getVendorCode() != 0x1E) {
             SetColor(1, 0, 0);
         }
-        Bowler_Server(&Packet, true);
+        Bowler_Server(&BootloaderPacket, true);
         if ((isPressed() || getBootloaderResetFlag())) {
             println_E("Rebooting "); p_int_E(isPressed());print_E(", ");p_int_E(getBootloaderResetFlag());
             U1CON = 0x0000;
@@ -64,7 +64,7 @@ int main(void) {
         }
     }//end while
 }
-static uint8_t avrID[7];
+uint8_t avrID[7];
 
 void InitializeSystem(void) {
     Bowler_Init();
@@ -83,11 +83,11 @@ void InitializeSystem(void) {
     
     println_I("Adding Namespaces ");
     addNamespaceToList(get_bcsBootloaderNamespace());
-
+    //getBcsRpcNamespace();
     //println_I("Namespaces added");
 
     char * dev = "Bootloader";
-    char ser[13];
+    char ser[15];
     int i;
     char tmp;
     for (i = 0; i < 6; i++) {

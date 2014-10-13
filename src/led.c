@@ -27,10 +27,10 @@
  *                  usb_device.c.
  *******************************************************************/
 #include "main.h"
-static unsigned char greenLed=0;
+unsigned char greenLed=0;
 void BlinkUSBStatus(void)
 {
-    static uint16_t led_count=0;
+    uint16_t led_count=0;
 
     if(led_count == 0)led_count = 10000U;
     led_count--;
