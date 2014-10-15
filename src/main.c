@@ -49,7 +49,7 @@ int main(void) {
 
     InitializeSystem();
     
-    println_I("Stack initialized");
+    //println_I("Stack initialized");
     while (1) {
         
         if (getVendorCode() != 0x1E) {
@@ -58,7 +58,7 @@ int main(void) {
            BlinkUSBStatus();
         Bowler_Server(&BootloaderPacket, true);
         if ((isPressed() || getBootloaderResetFlag())) {
-            println_E("Rebooting "); p_int_E(isPressed());print_E(", ");p_int_E(getBootloaderResetFlag());
+           // println_E("Rebooting "); p_int_E(isPressed());print_E(", ");p_int_E(getBootloaderResetFlag());
             U1CON = 0x0000;
             DelayMs(100);
             Reset();
@@ -82,7 +82,7 @@ void InitializeSystem(void) {
     //println_I("Seting BL version");
     //FlashSetBlRev(rev);
     
-    println_I("Adding Namespaces ");
+    //println_I("Adding Namespaces ");
     addNamespaceToList(get_bcsBootloaderNamespace());
     //getBcsRpcNamespace();
     //println_I("Namespaces added");
