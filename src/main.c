@@ -23,7 +23,7 @@ BowlerPacket BootloaderPacket;
 //#define initButton() (_TRISB0)=1;
 
 int main(void) {
-    InitLEDS();
+    
     SetColor(1, 1, 1);
     initButton();
     int timeout = 0;
@@ -51,10 +51,11 @@ int main(void) {
     
     println_I("Stack initialized");
     while (1) {
-        BlinkUSBStatus();
+        
         if (getVendorCode() != 0x1E) {
             SetColor(1, 0, 0);
-        }
+        }else
+           BlinkUSBStatus();
         Bowler_Server(&BootloaderPacket, true);
         if ((isPressed() || getBootloaderResetFlag())) {
             println_E("Rebooting "); p_int_E(isPressed());print_E(", ");p_int_E(getBootloaderResetFlag());
@@ -69,7 +70,7 @@ uint8_t avrID[7];
 void InitializeSystem(void) {
     Bowler_Init();
     EnableDebugTerminal();
-    setPrintLevelInfoPrint();
+    setPrintLevelWarningPrint();
     clearPrint();
 
 #if !defined(MAJOR_REV)
@@ -111,7 +112,7 @@ void InitializeSystem(void) {
     InitSPI();
     
 
-    SetColor(1, 0, 1);
+    SetColor(1, 1, 1);
     programMode();
     writeLowFuse();
     writeHighFuse();
@@ -122,6 +123,7 @@ void InitializeSystem(void) {
     DelayMs(10);
     HoldAVRReset();
     GetAVRid(avrID);
+
 #else
 #error No Bootloader type defined
 #endif

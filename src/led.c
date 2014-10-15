@@ -28,11 +28,12 @@
  *******************************************************************/
 #include "main.h"
 unsigned char greenLed=0;
+uint16_t led_count=0;
 void BlinkUSBStatus(void)
 {
-    uint16_t led_count=0;
-
-    if(led_count == 0)led_count = 10000U;
+ 
+    if(led_count == 0)
+        led_count = 10000U;
     led_count--;
 
 	if(led_count==0)
@@ -40,7 +41,5 @@ void BlinkUSBStatus(void)
 		greenLed= !greenLed;
 		setLed(!greenLed,greenLed,!greenLed);
 	}//end if
-
-
 
 }//end BlinkUSBStatus
