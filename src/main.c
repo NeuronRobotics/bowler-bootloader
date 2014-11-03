@@ -17,7 +17,7 @@ boolean DebugFlag = true;
 
 #define SYS_FREQ 			(80000000L)
 
-BowlerPacket BootloaderPacket;
+static BowlerPacket BootloaderPacket;
 
 //#define isPressed() (_RB0==1)
 //#define initButton() (_TRISB0)=1;
