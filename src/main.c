@@ -23,7 +23,7 @@ static BowlerPacket BootloaderPacket;
 //#define initButton() (_TRISB0)=1;
 
 int main(void) {
-    
+    initLed();
     SetColor(1, 1, 1);
     initButton();
     int timeout = 0;
@@ -51,10 +51,11 @@ int main(void) {
     
     //println_I("Stack initialized");
     while (1) {
-        
+#if defined(DYIO)
         if (getVendorCode() != 0x1E) {
             SetColor(1, 0, 0);
         }else
+#endif
            BlinkUSBStatus();
         Bowler_Server(&BootloaderPacket, true);
         if ((isPressed() || getBootloaderResetFlag())) {
@@ -125,7 +126,7 @@ void InitializeSystem(void) {
     GetAVRid(avrID);
 
 #else
-#error No Bootloader type defined
+//#error No Bootloader type defined
 #endif
 
 }

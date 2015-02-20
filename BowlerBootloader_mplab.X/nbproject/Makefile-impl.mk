@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=BowlerBootloader_mplab.X
 
 # Active Configuration
-DEFAULTCONF=default
+DEFAULTCONF=BowlerBoard4
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default 
+ALLCONFS=DyIO BowlerBoard3 BowlerBoard4 
 
 
 # build
@@ -45,13 +45,17 @@ ALLCONFS=default
 
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=DyIO clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=BowlerBoard3 clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=BowlerBoard4 clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=DyIO build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=BowlerBoard3 build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=BowlerBoard4 build
 
 
 

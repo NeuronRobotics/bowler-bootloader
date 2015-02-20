@@ -26,7 +26,7 @@
  *                  USBDeviceState is declared and updated in
  *                  usb_device.c.
  *******************************************************************/
-#include "main.h"
+
 unsigned char greenLed=0;
 uint16_t led_count=0;
 void BlinkUSBStatus(void)

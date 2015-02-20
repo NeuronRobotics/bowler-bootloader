@@ -65,11 +65,33 @@
 	#define isPressed()		( _RD6==0 || _RD7==0 || _RD13==0)
 	#define setLed(a,b,c) 	_RD0=a;_RD1=b;_RD2=c;
 
-#elif defined(SERVOSTOCK)
-		#define initLed()		_TRISD0 = OUTPUT;_TRISD11 = OUTPUT;_TRISD10 = OUTPUT;
-		#define initButton() 	((_TRISF5)=1)
-		#define isPressed()		(_RF5 == 0)
-	#define setLed(a,b,c) 	LATDbits.LATD10=a;LATDbits.LATD11=b;LATDbits.LATD0=c
+#elif defined(BowlerBoard3)
+
+#define     LED_RED_TRIS    setPicIOTristateOutput('D',10)
+#define     LED_GRN_TRIS    setPicIOTristateOutput('D',11)
+#define     LED_BLU_TRIS    setPicIOTristateOutput('D',0)
+
+
+#define     initLed()      LED_RED_TRIS;LED_GRN_TRIS;LED_BLU_TRIS;
+#define     setLed(r,g,b)  ioPortD(r>0?0:1, 10);ioPortD(g>0?0:1, 11);ioPortD(b>0?0:1, 0);
+
+
+#define     initButton()      setPicIOTristateInput('F',5)//(_TRISF5)=INPUT; // for the reset sw
+#define     isPressed()        (getPicIOPin('F',5) ==1)
+
+#elif defined(BowlerBoard4)
+
+#define     LED_RED_TRIS    setPicIOTristateOutput('D',10)
+#define     LED_GRN_TRIS    setPicIOTristateOutput('D',11)
+#define     LED_BLU_TRIS    setPicIOTristateOutput('D',0)
+
+
+#define     initLed()      LED_RED_TRIS;LED_GRN_TRIS;LED_BLU_TRIS;
+#define     setLed(r,g,b)  ioPortD(r>0?0:1, 10);ioPortD(g>0?0:1, 11);ioPortD(b>0?0:1, 0);
+
+
+#define     initButton()      setPicIOTristateInput('F',5)//(_TRISF5)=INPUT; // for the reset sw
+#define     isPressed()        (getPicIOPin('F',5) ==0)
 
 #else
 #error No Board defined in for bootloader
