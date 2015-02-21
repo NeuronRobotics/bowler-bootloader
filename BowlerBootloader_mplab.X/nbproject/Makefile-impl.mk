@@ -27,7 +27,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=BowlerBootloader_mplab.X
 
 # Active Configuration
-DEFAULTCONF=BowlerBoard4
+DEFAULTCONF=BowlerBoard3
 CONF=${DEFAULTCONF}
 
 # All Configurations
